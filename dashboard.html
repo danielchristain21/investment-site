@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Global Trust Fund</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #07111F;
+      color: #FFFFFF;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #0D1B2A;
+      border-bottom: 1px solid #203246;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #D4AF37;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logout {
+      color: #FFFFFF;
+      background: transparent;
+      border: 1px solid #D4AF37;
+      border-radius: 7px;
+      padding: 9px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .logout:hover {
+      background: #D4AF37;
+      color: #07111F;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 35px 20px;
+    }
+
+    .welcome {
+      margin-bottom: 28px;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #B8C4D4;
+    }
+
+    .balance-card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+
+    .balance-label {
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .balance {
+      color: #D4AF37;
+      font-size: 42px;
+      font-weight: bold;
+    }
+
+    .balance-note {
+      color: #8FA0B4;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+      font-size: 21px;
+    }
+
+    .activity {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 12px;
+      padding: 20px;
+      color: #B8C4D4;
+    }
+
+    @media (max-width: 700px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .

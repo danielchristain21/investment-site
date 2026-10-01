@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Global Trust Fund</title>
-
-  <style>
+  <title>Dashboard | Global Trust Fund</title>  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -129,6 +126,87 @@
       color: #B8C4D4;
     }
 
+    .withdraw-card {
+      background: #0D1B2A;
+      border: 1px solid #203246;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .withdraw-options {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .withdraw-option {
+      flex: 1;
+      padding: 13px;
+      background: #07111F;
+      color: #FFFFFF;
+      border: 1px solid #203246;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .withdraw-option.active,
+    .withdraw-option:hover {
+      border-color: #D4AF37;
+      color: #D4AF37;
+    }
+
+    .withdraw-form {
+      display: none;
+    }
+
+    .withdraw-form.active {
+      display: block;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field label {
+      display: block;
+      color: #B8C4D4;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 12px;
+      background: #07111F;
+      color: #FFFFFF;
+      border: 1px solid #203246;
+      border-radius: 7px;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #D4AF37;
+    }
+
+    .submit-withdraw {
+      width: 100%;
+      padding: 13px;
+      background: #D4AF37;
+      color: #07111F;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .submit-withdraw:hover {
+      opacity: 0.9;
+    }
+
     @media (max-width: 700px) {
       .cards {
         grid-template-columns: 1fr;
@@ -137,59 +215,113 @@
       .balance {
         font-size: 34px;
       }
+
+      .withdraw-options {
+        flex-direction: column;
+      }
     }
-  </style>
-</head>
-
-<body>
-
-  <header>
+  </style></head><body>  <header>
     <div class="logo">Global Trust Fund</div>
     <button class="logout" onclick="logout()">Logout</button>
-  </header>
+  </header>  <main class="container"><div class="welcome">
+  <h1>Welcome, <span id="userName">User</span></h1>
+  <p>Here's an overview of your account.</p>
+</div>
 
-  <main class="container">
+<div class="balance-card">
+  <div class="balance-label">Account Balance</div>
+  <div class="balance">$14,000.00</div>
+</div>
 
-    <div class="welcome">
-      <h1>Welcome, <span id="userName">User</span></h1>
-      <p>Here's an overview of your account.</p>
+<div class="cards">
+
+  <div class="card">
+    <h3>Account Status</h3>
+    <p>Active</p>
+  </div>
+
+  <div class="card">
+    <h3>Investment Plan</h3>
+    <p>Standard</p>
+  </div>
+
+  <div class="card">
+    <h3>Account Currency</h3>
+    <p>USD</p>
+  </div>
+
+</div>
+
+<div class="section">
+  <h2>Withdraw</h2>
+
+  <div class="withdraw-card">
+
+    <div class="withdraw-options">
+      <button class="withdraw-option" onclick="showForm('bank', this)">
+        Bank Transfer
+      </button>
+
+      <button class="withdraw-option" onclick="showForm('wallet', this)">
+        Crypto Wallet
+      </button>
     </div>
 
-    <div class="balance-card">
-      <div class="balance-label">Account Balance</div>
-      <div class="balance">$14,000.00</div>
-    </div>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>Account Status</h3>
-        <p>Active</p>
+    <form id="bankForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
+      <div class="field">
+        <label for="bankName">Bank Name</label>
+        <input type="text" id="bankName" placeholder="Enter bank name">
       </div>
 
-      <div class="card">
-        <h3>Investment Plan</h3>
-        <p>Standard</p>
+      <div class="field">
+        <label for="accountName">Account Name</label>
+        <input type="text" id="accountName" placeholder="Enter account name">
       </div>
 
-      <div class="card">
-        <h3>Account Currency</h3>
-        <p>USD</p>
+      <div class="field">
+        <label for="accountNumber">Account Number</label>
+        <input type="text" id="accountNumber" placeholder="Enter account number">
       </div>
 
-    </div>
+      <button class="submit-withdraw" type="submit">
+        Submit Withdrawal Request
+      </button>
+    </form>
 
-    <div class="section">
-      <h2>Recent Activity</h2>
-
-      <div class="activity">
-        No recent activity to display.
+    <form id="walletForm" class="withdraw-form" onsubmit="return handleWithdraw(event)">
+      <div class="field">
+        <label for="network">Network</label>
+        <select id="network">
+          <option value="">Select network</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="bitcoin">Bitcoin</option>
+          <option value="tron">TRON</option>
+          <option value="bsc">BNB Smart Chain</option>
+        </select>
       </div>
-    </div>
 
-  </main>
+      <div class="field">
+        <label for="walletAddress">Wallet Address</label>
+        <input type="text" id="walletAddress" placeholder="Enter wallet address">
+      </div>
 
-  <script>
+      <button class="submit-withdraw" type="submit">
+        Submit Withdrawal Request
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<div class="section">
+  <h2>Recent Activity</h2>
+
+  <div class="activity">
+    No recent activity to display.
+  </div>
+</div>
+
+  </main>  <script>
     const loggedIn = localStorage.getItem("gtf_logged_in");
 
     if (loggedIn !== "true") {
@@ -206,7 +338,30 @@
       localStorage.removeItem("gtf_logged_in");
       window.location.href = "login.html";
     }
-  </script>
 
-</body>
+    function showForm(type, button) {
+      document.getElementById("bankForm").classList.remove("active");
+      document.getElementById("walletForm").classList.remove("active");
+
+      document.querySelectorAll(".withdraw-option").forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      if (type === "bank") {
+        document.getElementById("bankForm").classList.add("active");
+      }
+
+      if (type === "wallet") {
+        document.getElementById("walletForm").classList.add("active");
+      }
+
+      button.classList.add("active");
+    }
+
+    function handleWithdraw(event) {
+      event.preventDefault();
+      alert("Your withdrawal request was not submitted.");
+      return false;
+    }
+  </script></body>
 </html>
